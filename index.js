@@ -33,7 +33,7 @@ console.log(data)
                   <h2 class="card-title">${data.phone_name}</h2>
                   <p>If a dog chews shoes whose shoes does he choose?</p>
                   <div class="card-actions justify-center">
-                    <button onclick="showDetails('${data.slug}')" onclick="my_modal_5.showModal()" class="btn btn-primary">Show Details</button>
+                    <button onclick="handleShowDetails('${data.slug}')" class="btn btn-primary">Show Details</button>
                   </div>
                 </div>
         `;
@@ -44,12 +44,30 @@ console.log(data)
     showLoading(false);
 }
 
-const showDetails = async (id) => {
+const handleShowDetails = async (id) => {
   console.log(id)
   
   const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
   const individualData = await res.json();
-  console.log(individualData)
+  console.log(individualData);
+
+  const data = individualData.data;
+  console.log(data);
+  const modalDiv = document.getElementById("modal-box");
+  modalDiv.classList ='space-y-4'
+  modalDiv.innerHTML = `
+  <div class='w-40 mx-auto'>
+    <img src='${data.image}' />
+  </div>
+  <h3 class='text-2xl'>${data.name}</h3>
+  <p><span class='text-xl font-semibold'>Brand : </span> ${data.brand}</p>
+  <p><span class='text-xl font-semibold'>Storage : </span> ${data.mainFeatures.storage}</p>
+  <p><span class='text-xl font-semibold'>Chip Set : </span> ${data.mainFeatures.chipSet}</p>
+  <p><span class='text-xl font-semibold'>Display Size : </span> ${data.mainFeatures.displaySize}</p>
+  <p><span class='text-xl font-semibold'>Memory : </span> ${data.mainFeatures.memory}</p>
+  `
+
+  my_modal_5.showModal();
 }
 
 const search = (isShowAll) => {
@@ -74,3 +92,6 @@ function showLoading(isLoading){
     loading.classList.add("hidden");
   }
 }
+
+
+
