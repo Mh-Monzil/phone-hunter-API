@@ -14,11 +14,30 @@
     <main>
 
         <!-- search  -->
-        <section class="flex justify-end mx-20">
-            <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-            <button class="btn btn-error">search</button>
+        <section class="flex justify-end mx-20 bg-teal-100  p-4">
+            <input id="search-text" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+            <button onclick="search()" class="btn btn-error">search</button>
         </section>
 
+        <!-- loading  -->
+        <div id="loading" class="flex justify-center py-20 hidden">
+            <span class="loading loading-spinner loading- "></span>
+        </div>
+
+        <!-- Open the modal using ID.showModal() method -->
+        <button class="btn" onclick="my_modal_5.showModal()">open modal</button>
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Hello!</h3>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="modal-action">
+            <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn">Close</button>
+            </form>
+            </div>
+        </div>
+        </dialog>
 
         <section id="card-container" class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- <div class="card w-96 bg-white shadow-xl">
@@ -32,6 +51,9 @@
                 </div>
             </div> -->
         </section>
+        <div class="flex justify-center">
+            <button onclick="showMore()" id="show-more" class="btn btn-neutral hidden">Show All</button>
+        </div>
     </main>
 
     <footer>
